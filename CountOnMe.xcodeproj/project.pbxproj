@@ -80,9 +80,9 @@
 			isa = PBXGroup;
 			children = (
 				1FA43BDE224E569A00F565CB /* Info.plist */,
+				44E649ED2671EFB1000BFB71 /* Controller */,
 				44E649EC2671EFA9000BFB71 /* Model */,
 				44E649EE2671EFB8000BFB71 /* View */,
-				44E649ED2671EFB1000BFB71 /* Controller */,
 				44E649EF2671EFEE000BFB71 /* Files */,
 			);
 			path = CountOnMe;

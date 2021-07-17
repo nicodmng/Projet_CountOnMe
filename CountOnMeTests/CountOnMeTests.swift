@@ -10,9 +10,9 @@ import XCTest
 @testable import CountOnMe
 
 class CountOnMeTests: XCTestCase {
-    let calculator = Calculator()
     
     func testAdditionMethod_WhenCorrectCalculIsGiven_ShouldReturnCorrectResult() {
+        let calculator = Calculator()
         calculator.tappedNumber(numberText: "1")
         calculator.addition()
         calculator.tappedNumber(numberText: "1")
@@ -21,6 +21,7 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testSoustractionMethod_WhenCorrectCalculIsGiven_ShouldReturnCorrectResult() {
+        let calculator = Calculator()
         calculator.tappedNumber(numberText: "2")
         calculator.substraction()
         calculator.tappedNumber(numberText: "2")
@@ -45,12 +46,14 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testClearMethod_WhenTappedOnACButton_ShouldReturnClear() {
+        let calculator = Calculator()
         calculator.tappedNumber(numberText: "AC")
         calculator.clear()
         XCTAssertEqual(calculator.calculText, "")
     }
     
     func testResult_WhenUserHasFinishHisCalcul_ShouldCalculTextReset() {
+        let calculator = Calculator()
         calculator.tappedNumber(numberText: "2")
         calculator.addition()
         calculator.tappedNumber(numberText: "2")
@@ -60,33 +63,33 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testError_WhenUserTappedDoublePlus_ShouldShowError() {
+        let calculator = Calculator()
         calculator.tappedNumber(numberText: "2")
         calculator.addition()
         calculator.addition()
-        calculator.delegate?.showError(text: "Un opérateur est déjà mis !")
         XCTAssertEqual(calculator.calculText, "2 + ")
     }
     
     func testError_WhenUserTappedDoubleMinus_ShouldShowError() {
+        let calculator = Calculator()
         calculator.tappedNumber(numberText: "2")
         calculator.substraction()
         calculator.substraction()
-        calculator.delegate?.showError(text: "Un opérateur est déjà mis !")
         XCTAssertEqual(calculator.calculText, "2 - ")
     }
     
     func testError_WhenCalculTextIsEmpty_ShouldShowError() {
+        let calculator = Calculator()
         calculator.equal()
-        calculator.delegate?.showError(text: "Démarrez un nouveau calcul !")
         XCTAssertEqual(calculator.calculText, "")
     }
     
     func testError_WhenUserTappedWrongExpression_ShouldShowError() {
+        let calculator = Calculator()
         calculator.tappedNumber(numberText: "2")
         calculator.addition()
         calculator.substraction()
         calculator.equal()
-        calculator.delegate?.showError(text: "Entrez une expression correcte !")
         XCTAssertEqual(calculator.calculText, "2 + ")
     }
 }
