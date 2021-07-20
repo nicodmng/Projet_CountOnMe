@@ -17,7 +17,7 @@ class CountOnMeTests: XCTestCase {
         calculator.addition()
         calculator.tappedNumber(numberText: "1")
         calculator.equal()
-        XCTAssertEqual(calculator.calculText, "1 + 1 = 2")
+        XCTAssertEqual(calculator.calculText, "1 + 1 = 2.0")
     }
     
     func testSoustractionMethod_WhenCorrectCalculIsGiven_ShouldReturnCorrectResult() {
@@ -26,23 +26,25 @@ class CountOnMeTests: XCTestCase {
         calculator.substraction()
         calculator.tappedNumber(numberText: "2")
         calculator.equal()
-        XCTAssertEqual(calculator.calculText, "2 - 2 = 0")
+        XCTAssertEqual(calculator.calculText, "2 - 2 = 0.0")
     }
     
     func testMultiplicationMethod_WhenCorrectCalculIsGiven_ShouldReturnCorrectResult() {
-        //        calculator.tappedNumber(numberText: "4")
-        //        calculator.multiplication()
-        //        calculator.tappedNumber(numberText: "2")
-        //        calculator.equal()
-        //        XCTAssertEqual(calculator.calculText, "4 x 2 = 8")
+        let calculator = Calculator()
+        calculator.tappedNumber(numberText: "4")
+        calculator.multiplication()
+        calculator.tappedNumber(numberText: "2")
+        calculator.equal()
+        XCTAssertEqual(calculator.calculText, "4 x 2 = 8.0")
     }
     
     func testDivisionMethod_WhenCorrectCalculIsGiven_ShouldReturnCorrectResult() {
-        //        calculator.tappedNumber(numberText: "4")
-        //        calculator.division()
-        //        calculator.tappedNumber(numberText: "2")
-        //        calculator.equal()
-        //        XCTAssertEqual(calculator.calculText, "4 / 2 = 2")
+        let calculator = Calculator()
+        calculator.tappedNumber(numberText: "4")
+        calculator.division()
+        calculator.tappedNumber(numberText: "2")
+        calculator.equal()
+        XCTAssertEqual(calculator.calculText, "4 / 2 = 2.0")
     }
     
     func testClearMethod_WhenTappedOnACButton_ShouldReturnClear() {
@@ -60,6 +62,17 @@ class CountOnMeTests: XCTestCase {
         calculator.equal()
         calculator.tappedNumber(numberText: "1")
         XCTAssertEqual(calculator.calculText, "1")
+    }
+    
+    func testMultiPriority_WhenUserDoMultiplication_ShouldMultiplicationFirst() {
+        let calculator = Calculator()
+        calculator.tappedNumber(numberText: "2")
+        calculator.addition()
+        calculator.tappedNumber(numberText: "2")
+        calculator.multiplication()
+        calculator.tappedNumber(numberText: "2")
+        calculator.equal()
+        XCTAssertEqual(calculator.calculText, "2 + 2 x 2 = 6.0")
     }
     
     func testError_WhenUserTappedDoublePlus_ShouldShowError() {
@@ -91,5 +104,13 @@ class CountOnMeTests: XCTestCase {
         calculator.substraction()
         calculator.equal()
         XCTAssertEqual(calculator.calculText, "2 + ")
+    }
+    
+    func testError_WhenUserDoupleTappAnOperator_ShouldShowError() {
+        let calculator = Calculator()
+        calculator.tappedNumber(numberText: "2")
+        calculator.tappedNumber(numberText: "x")
+        calculator.tappedNumber(numberText: "x")
+        XCTAssertEqual(calculator.calculText, "2xx")
     }
 }
