@@ -15,8 +15,15 @@ protocol Display {
 }
 
 class Calculator {
-    
     //MARK: - Var
+    var numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        //formatter.usesSignificantDigits = true
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
+    
     var delegate: Display?
     
     var calculText: String = "" {
@@ -34,19 +41,21 @@ class Calculator {
     var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-"
             && elements.last != "x" && elements.last != "/"
-
     }
-//    var divisionError: Bool {
-//        return elements.last != ""
-//    }
+
     // Minimum 3 caractères avant de lancer le calcul
     var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
     
+    var isDivisionByZero: Bool {
+        return calculText.contains("/ 0")
+    }
+            
     var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-"
             && elements.last != "x" && elements.last != "/"
+            && !elements.isEmpty
     }
     
     // Find a "=" in the calcul text.
@@ -55,26 +64,20 @@ class Calculator {
     }
 
     //MARK: - Methods
-//    func error() {
-//        if divisionError {
-//            calculText.append("0")
-//        } else {
-//            delegate?.showError(text: "ErrorCalcul")
-//        }
-//    }
+    
     func addition() {
         if canAddOperator {
             calculText.append(" + ")
         } else {
-            delegate?.showError(text: "Un opérateur est déjà mis !")
+            delegate?.showError(text: "Vous ne pouvez pas saisir un opérateur")
         }
     }
-    
+
     func substraction() {
         if canAddOperator {
             calculText.append(" - ")
         } else {
-            delegate?.showError(text: "Un opérateur est déjà mis !")
+            delegate?.showError(text: "Vous ne pouvez pas saisir un opérateur")
         }
     }
     
@@ -82,7 +85,7 @@ class Calculator {
         if canAddOperator {
             calculText.append(" x ")
         } else {
-            delegate?.showError(text: "Un opérateur est déjà mis !")
+            delegate?.showError(text: "Vous ne pouvez pas saisir un opérateur")
         }
     }
     
@@ -90,18 +93,22 @@ class Calculator {
         if canAddOperator {
             calculText.append(" / ")
         } else {
-            delegate?.showError(text: "Un opérateur est déjà mis !")
+            delegate?.showError(text: "Vous ne pouvez pas saisir un opérateur")
         }
     }
     
     func calculPriority(elements: [String]) -> [String] {
         var tempElements = elements
-
         while tempElements.contains("x") || tempElements.contains("/") {
             if let operatorIndex = tempElements.firstIndex(where: { $0 == "x" || $0 == "/"}) {
                 let mathOperator = tempElements[operatorIndex]
-                guard let leftNumber = Double(tempElements[operatorIndex - 1]) else { return [] }
-                guard let rightNumber = Double(tempElements[operatorIndex + 1]) else { return [] }
+                
+                guard let leftNumber = Double(tempElements[operatorIndex - 1]) else {
+                    return []
+                }
+                guard let rightNumber = Double(tempElements[operatorIndex + 1]) else {
+                    return []
+                }
                 let result: Double
                 if mathOperator == "x" {
                     result = leftNumber * rightNumber
@@ -113,48 +120,21 @@ class Calculator {
                 tempElements.remove(at: operatorIndex)
             }
         }
-        
-//        while (tempElements.firstIndex(of: "x") != nil) || (tempElements.firstIndex(of: "/") != nil) {
-//
-//            // recherche du premier indice d'un opérateur prioritaire
-//            var firstIndex = 0
-//            if let multIndex = tempElements.firstIndex(of: "x"),
-//               let divIndex = tempElements.firstIndex(of: "/") {
-//            firstIndex = min(multIndex, divIndex)
-//            } else if let multIndex = tempElements.firstIndex(of: "x") {
-//                firstIndex = multIndex
-//            } else if let divIndex = tempElements.firstIndex(of: "/") {
-//                firstIndex = divIndex
-//            }
-//
-//            // chercher les éléments gauche et droite de l'opérateur
-//            let left = Double(elements[firstIndex - 1])!
-//            let operand = elements[firstIndex]
-//            let right = Double(elements[firstIndex + 1])!
-//
-//            // réalisation du calcul
-//            let result: Double
-//            switch operand {
-//            case "x": result = left * right
-//            case "/": result = left / right
-//            default : continue
-//            }
-//
-//            // suppression de l'index du milieu (opérateur) et l'index de droite (l'operand) puis remplacer l'index de gauche par le résultat
-//            tempElements.remove(at: firstIndex)
-//            tempElements.remove(at: firstIndex)
-//            tempElements[firstIndex - 1] = "\(result)"
-//        }
         return tempElements
         }
     
     func equal() {
         guard expressionIsCorrect else {
-            delegate?.showError(text: "Entrez une expression correcte !")
+            delegate?.showError(text: "Entrez une expression correcte")
             return
         }
         guard expressionHaveEnoughElement else {
-            delegate?.showError(text: "Démarrez un nouveau calcul !")
+            delegate?.showError(text: "Démarrez un nouveau calcul")
+            return
+        }
+
+        guard !isDivisionByZero else {
+            delegate?.showError(text: "La division par zéro est impossible")
             return
         }
         
@@ -165,8 +145,8 @@ class Calculator {
             let left = Double(operationsToReduce[0])!
             let operand = operationsToReduce[1]
             let right = Double(operationsToReduce[2])!
-            
             let result: Double
+            
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
@@ -176,7 +156,10 @@ class Calculator {
             operationsToReduce.insert("\(result)", at: 0)
         }
         
-        calculText.append(" = \(operationsToReduce.first!)")
+        guard let result = operationsToReduce.first else { return }
+        guard let double = Double(result) else { return }
+        guard let numFormat = numberFormatter.string(from: NSNumber(value: double)) else { return }
+       calculText.append(" = " + numFormat)
     }
     
     func clear() {
@@ -189,6 +172,4 @@ class Calculator {
         }
         calculText.append(numberText)
     }
-    
-    // Create local copy of operations
 }

@@ -22,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="0" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="T2H-yn-nBB">
-                                <rect key="frame" x="25" y="44" width="340" height="355"/>
+                                <rect key="frame" x="25" y="44" width="340" height="345"/>
                                 <color key="backgroundColor" red="0.24527746819999999" green="0.53481305040000005" blue="0.58749136739999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="isI-Gg-Iye">
-                                <rect key="frame" x="25" y="424" width="340" height="206"/>
+                                <rect key="frame" x="25" y="414" width="340" height="206"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="U2a-5D-kgc">
                                         <rect key="frame" x="0.0" y="0.0" width="90.666666666666671" height="152"/>
@@ -159,11 +159,11 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ogr-Aw-e1h">
-                                <rect key="frame" x="25" y="730" width="340" height="60"/>
+                                <rect key="frame" x="25" y="720" width="340" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQU-P5-55X" userLabel="Plus">
                                         <rect key="frame" x="0.0" y="0.0" width="56" height="60"/>
-                                        <color key="backgroundColor" red="0.46913260919999999" green="0.7149516575" blue="0.62407517239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="plus" catalog="system">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -174,7 +174,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zr-HC-0N9" userLabel="Minus">
                                         <rect key="frame" x="71" y="0.0" width="56" height="60"/>
-                                        <color key="backgroundColor" red="0.87294975829999999" green="0.37112226879999999" blue="0.32504552809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="minus" catalog="system">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -196,7 +196,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppf-ms-ivO" userLabel="Divide">
                                         <rect key="frame" x="213" y="0.0" width="56" height="60"/>
-                                        <color key="backgroundColor" red="0.2272107005" green="0.61965006590000005" blue="0.84303092960000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="divide" catalog="system">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -207,10 +207,10 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMj-Of-bCU" userLabel="Equal">
                                         <rect key="frame" x="284" y="0.0" width="56" height="60"/>
-                                        <color key="backgroundColor" red="0.94643473759999996" green="0.64318747399999998" blue="0.12665354140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="equal" catalog="system">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="tappedEqualButton:" destination="eqK-jh-KKu" eventType="touchUpInside" id="JgS-cl-T2a"/>
@@ -225,6 +225,7 @@
                                 <rect key="frame" x="25" y="353" width="340" height="46"/>
                                 <color key="backgroundColor" red="0.49019607840000001" green="0.76867157220000004" blue="0.78813993930000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="AC"/>
                                 <connections>
                                     <action selector="tappedACButton:" destination="eqK-jh-KKu" eventType="touchUpInside" id="CAk-kL-RLT"/>
@@ -238,7 +239,7 @@
                             <constraint firstItem="isI-Gg-Iye" firstAttribute="leading" secondItem="AWJ-Vl-uau" secondAttribute="leading" constant="25" id="DBK-UL-ilk"/>
                             <constraint firstItem="AWJ-Vl-uau" firstAttribute="trailing" secondItem="T2H-yn-nBB" secondAttribute="trailing" constant="25" id="URF-o6-s0y"/>
                             <constraint firstItem="AWJ-Vl-uau" firstAttribute="trailing" secondItem="qj4-9m-dRr" secondAttribute="trailing" constant="25" id="Vjq-Im-B4j"/>
-                            <constraint firstItem="AWJ-Vl-uau" firstAttribute="bottom" secondItem="ogr-Aw-e1h" secondAttribute="bottom" constant="20" id="Wuo-Bs-CiJ"/>
+                            <constraint firstItem="AWJ-Vl-uau" firstAttribute="bottom" secondItem="ogr-Aw-e1h" secondAttribute="bottom" constant="30" id="Wuo-Bs-CiJ"/>
                             <constraint firstItem="T2H-yn-nBB" firstAttribute="top" secondItem="AWJ-Vl-uau" secondAttribute="top" id="bgY-0d-YBK"/>
                             <constraint firstItem="isI-Gg-Iye" firstAttribute="top" secondItem="T2H-yn-nBB" secondAttribute="bottom" constant="25" id="dtX-AT-3Ja"/>
                             <constraint firstItem="AWJ-Vl-uau" firstAttribute="trailing" secondItem="isI-Gg-Iye" secondAttribute="trailing" constant="25" id="fyk-zo-uYZ"/>
