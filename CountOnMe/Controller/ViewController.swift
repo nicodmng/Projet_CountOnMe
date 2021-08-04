@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     //MARK: - IBOutlets & IBActions
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
-    
+    @IBOutlet var operatorButtons: [UIButton]!
     
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
@@ -24,21 +24,24 @@ class ViewController: UIViewController {
         }
         calculator.tappedNumber(numberText: numberText)
     }
-    
-    @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        calculator.addition()
-    }
-    
-    @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        calculator.substraction()
-    }
-    
-    @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
-        calculator.multiplication()
-    }
-    
-    @IBAction func tappedDivisionButton(_ sender: UIButton) {
-        calculator.division()
+
+    @IBAction func tappedOperatorButton(_ sender: AnyObject) {
+        guard let operatorButton = sender as? UIButton else {
+            return
+        }
+        
+        switch operatorButton.tag {
+        case 0 :
+            calculator.addAnOperator(operatorSign: " + ")
+        case 1 :
+            calculator.addAnOperator(operatorSign: " - ")
+        case 2 :
+            calculator.addAnOperator(operatorSign: " x ")
+        case 3 :
+            calculator.addAnOperator(operatorSign: " / ")
+        default :
+            return
+        }
     }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
@@ -47,6 +50,7 @@ class ViewController: UIViewController {
     
     @IBAction func tappedACButton(_ sender: UIButton) {
         calculator.clear()
+        textView.text = "0"
     }
     
     // View Life cycles

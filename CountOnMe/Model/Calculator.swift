@@ -16,6 +16,8 @@ protocol Display {
 
 class Calculator {
     //MARK: - Var
+    var delegate: Display?
+
     var numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         //formatter.usesSignificantDigits = true
@@ -23,8 +25,6 @@ class Calculator {
         formatter.maximumFractionDigits = 2
         return formatter
     }()
-    
-    var delegate: Display?
     
     var calculText: String = "" {
         didSet {
@@ -64,34 +64,10 @@ class Calculator {
     }
 
     //MARK: - Methods
-    
-    func addition() {
-        if canAddOperator {
-            calculText.append(" + ")
-        } else {
-            delegate?.showError(text: "Vous ne pouvez pas saisir un opérateur")
-        }
-    }
 
-    func substraction() {
+    func addAnOperator(operatorSign: String) {
         if canAddOperator {
-            calculText.append(" - ")
-        } else {
-            delegate?.showError(text: "Vous ne pouvez pas saisir un opérateur")
-        }
-    }
-    
-    func multiplication() {
-        if canAddOperator {
-            calculText.append(" x ")
-        } else {
-            delegate?.showError(text: "Vous ne pouvez pas saisir un opérateur")
-        }
-    }
-    
-    func division() {
-        if canAddOperator {
-            calculText.append(" / ")
+            calculText.append(operatorSign)
         } else {
             delegate?.showError(text: "Vous ne pouvez pas saisir un opérateur")
         }
@@ -162,14 +138,15 @@ class Calculator {
        calculText.append(" = " + numFormat)
     }
     
-    func clear() {
-        calculText.removeAll()
-    }
-    
     func tappedNumber(numberText: String) {
         if expressionHaveResult {
             calculText = ""
         }
         calculText.append(numberText)
     }
+    
+    func clear() {
+        calculText.removeAll()
+    }
 }
+
