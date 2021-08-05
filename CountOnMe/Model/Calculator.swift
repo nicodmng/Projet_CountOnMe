@@ -79,12 +79,8 @@ class Calculator {
             if let operatorIndex = tempElements.firstIndex(where: { $0 == "x" || $0 == "/"}) {
                 let mathOperator = tempElements[operatorIndex]
                 
-                guard let leftNumber = Double(tempElements[operatorIndex - 1]) else {
-                    return []
-                }
-                guard let rightNumber = Double(tempElements[operatorIndex + 1]) else {
-                    return []
-                }
+                guard let leftNumber = Double(tempElements[operatorIndex - 1]) else { return [] }
+                guard let rightNumber = Double(tempElements[operatorIndex + 1]) else { return [] }
                 let result: Double
                 if mathOperator == "x" {
                     result = leftNumber * rightNumber
