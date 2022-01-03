@@ -1,2 +1,2 @@
-# Projet_CountOnMe
-Application d'une calculatrice basique.
+CountOnMe
+Version 1.0
